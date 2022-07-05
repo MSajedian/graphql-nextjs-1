@@ -1,15 +1,12 @@
 import '../styles/globals.css'
-import { ApolloClient, ApolloProvider } from '@apollo/client';
-
-const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
-});
+// import { ApolloProvider } from '@apollo/client';
+// import client from '../apollo-client';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ApolloProvider client={client}>
+    // <ApolloProvider client={client}>
       <Component {...pageProps} />
-    </ApolloProvider>
+    // </ApolloProvider>
   )
 }
 

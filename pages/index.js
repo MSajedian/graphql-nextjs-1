@@ -1,10 +1,30 @@
 import Head from 'next/head'
 // import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
-import BookList from '../components/BookList'
+// import BookList from '../components/BookList'
+import { gql } from '@apollo/client';
+import client from "../apollo-client";
 
+export async function getStaticProps() {
+  const { data } = await client.query({
+    query: gql`
+    query RootQueryType {
+      books {
+        name
+        genre
+      }
+    }
+  `,
+  });
 
-export default function Home() {
+  return {
+    props: {
+      books: data.books,
+    },
+  };
+}
+
+export default function Home({ books }) {
   return (
     <div>
       <Head>
@@ -15,10 +35,14 @@ export default function Home() {
 
       <main>
         <h1>
-          Welcome
+          Book List
         </h1>
+        <div >
+          {books.map((book) => (
+            <div key={book.id} > <p> {book.name} </p> </div>
+          ))}
+        </div>
       </main>
-        <BookList />
     </div>
   )
 }

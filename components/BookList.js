@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client';
 
-export default function BookList() {
+export default function BookList({ books }) {
     return (
         <div>
+            
             <ul id="book-list">
                 <li>Book name</li>
             </ul>
